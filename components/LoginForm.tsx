@@ -15,7 +15,7 @@ export default function LoginForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Mock authentication
-    if (username === 'admin' && password === 'password') {
+    if (username === 'admin' && password === '123') {
       router.push('/dashboard')
     } else {
       alert('Invalid credentials')
