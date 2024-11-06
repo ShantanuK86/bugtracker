@@ -55,18 +55,21 @@ type TaskListProps = {
 
 export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProps) {
   const [editingTask, setEditingTask] = useState<Task | null>(null)
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [filterCriteria, setFilterCriteria] = useState<Task['status'] | 'all'>('all')
   const [sortCriteria, setSortCriteria] = useState<keyof Task>('dueDate')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
 
   const handleEdit = (task: Task) => {
     setEditingTask({ ...task })
+    setIsEditDialogOpen(true)
   }
 
   const handleUpdate = () => {
     if (editingTask) {
       updateTask(editingTask)
       setEditingTask(null)
+      setIsEditDialogOpen(false)
     }
   }
 
@@ -74,7 +77,6 @@ export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProp
     deleteTask(taskId)
   }
 
-  // Priority order map for custom sorting
   const priorityOrder = {
     high: 3,
     medium: 2,
@@ -88,14 +90,12 @@ export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProp
     }
     return result.sort((a, b) => {
       if (sortCriteria === 'priority') {
-        // Custom sorting for priority field
         const priorityA = priorityOrder[a.priority as keyof typeof priorityOrder] || 0
         const priorityB = priorityOrder[b.priority as keyof typeof priorityOrder] || 0
         return sortOrder === 'asc' 
           ? priorityA - priorityB 
           : priorityB - priorityA
       }
-      // Default sorting for other fields
       if (a[sortCriteria] < b[sortCriteria]) return sortOrder === 'asc' ? -1 : 1
       if (a[sortCriteria] > b[sortCriteria]) return sortOrder === 'asc' ? 1 : -1
       return 0
@@ -158,13 +158,20 @@ export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProp
               <TableCell>{task.dueDate}</TableCell>
               <TableCell>{task.timeSpent} hours</TableCell>
               <TableCell>
-                <Dialog>
+                <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
                   <DialogTrigger asChild>
                     <Button variant="outline" size="sm" onClick={() => handleEdit(task)}>
                       Edit
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
+                  <DialogContent className="sm:max-w-[425px] bg-background" style={{ 
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 50,
+                    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
+                  }}>
                     <DialogHeader>
                       <DialogTitle>Edit Task</DialogTitle>
                       <DialogDescription>
