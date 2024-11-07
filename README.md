@@ -3,7 +3,7 @@
 A modern bug tracking application built with Next.js 14, featuring a clean and intuitive interface for managing tasks and tracking issues.
 **Website:** [https://bugtracker-rouge.vercel.app](https://bugtracker-rouge.vercel.app/)
 
-#VIDEO
+## VIDEO
 https://github.com/user-attachments/assets/cc9e70b8-bcf7-4cc4-81a3-83a8a2581bc0
 ## Table of Contents
 
