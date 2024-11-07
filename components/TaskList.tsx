@@ -99,7 +99,7 @@ export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProp
       if (a[sortCriteria] > b[sortCriteria]) return sortOrder === 'asc' ? 1 : -1
       return 0
     })
-  }, [tasks, filterCriteria, sortCriteria, sortOrder])
+  }, [tasks, filterCriteria, sortCriteria, sortOrder,priorityOrder])
 
   return (
     <div>
@@ -178,7 +178,7 @@ export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProp
                     </AlertDialogTrigger>
                     <AlertDialogContent className="bg-background">
                       <AlertDialogHeader>
-                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                        <AlertDialogTitle>Are you absolutely sure#39</AlertDialogTitle>
                         <AlertDialogDescription>
                           This action cannot be undone. This will permanently delete the task.
                         </AlertDialogDescription>
@@ -204,7 +204,7 @@ export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProp
           <DialogHeader>
             <DialogTitle>Edit Task</DialogTitle>
             <DialogDescription>
-              Make changes to the task here. Click save when you're done.
+              Make changes to the task here. Click save when youre done.
             </DialogDescription>
           </DialogHeader>
           {editingTask && (
