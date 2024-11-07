@@ -145,7 +145,7 @@ export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProp
             <TableHead>Assignee</TableHead>
             <TableHead>Due Date</TableHead>
             <TableHead>Time Spent</TableHead>
-            <TableHead>Actions</TableHead>
+            <TableHead className="w-[160px]">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -158,156 +158,160 @@ export default function TaskList({ tasks, updateTask, deleteTask }: TaskListProp
               <TableCell>{task.dueDate}</TableCell>
               <TableCell>{task.timeSpent} hours</TableCell>
               <TableCell>
-                <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-                  <DialogTrigger asChild>
-                    <Button variant="outline" size="sm" onClick={() => handleEdit(task)}>
-                      Edit
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px] bg-background" style={{ 
-                    position: 'fixed',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    zIndex: 50,
-                    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
-                  }}>
-                    <DialogHeader>
-                      <DialogTitle>Edit Task</DialogTitle>
-                      <DialogDescription>
-                        Make changes to the task here. Click save when you're done.
-                      </DialogDescription>
-                    </DialogHeader>
-                    {editingTask && (
-                      <div className="grid gap-4 py-4">
-                        <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="title" className="text-right">
-                            Title
-                          </Label>
-                          <Input
-                            id="title"
-                            value={editingTask.title}
-                            onChange={(e) => setEditingTask({ ...editingTask, title: e.target.value })}
-                            className="col-span-3"
-                          />
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="description" className="text-right">
-                            Description
-                          </Label>
-                          <Input
-                            id="description"
-                            value={editingTask.description}
-                            onChange={(e) => setEditingTask({ ...editingTask, description: e.target.value })}
-                            className="col-span-3"
-                          />
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="priority" className="text-right">
-                            Priority
-                          </Label>
-                          <Select
-                            value={editingTask.priority}
-                            onValueChange={(value) => setEditingTask({ ...editingTask, priority: value as Task['priority'] })}
-                          >
-                            <SelectTrigger className="col-span-3">
-                              <SelectValue placeholder="Select priority" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="low">Low</SelectItem>
-                              <SelectItem value="medium">Medium</SelectItem>
-                              <SelectItem value="high">High</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="status" className="text-right">
-                            Status
-                          </Label>
-                          <Select
-                            value={editingTask.status}
-                            onValueChange={(value) => setEditingTask({ ...editingTask, status: value as Task['status'] })}
-                          >
-                            <SelectTrigger className="col-span-3">
-                              <SelectValue placeholder="Select status" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="todo">To Do</SelectItem>
-                              <SelectItem value="in-progress">In Progress</SelectItem>
-                              <SelectItem value="done">Done</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="assignee" className="text-right">
-                            Assignee
-                          </Label>
-                          <Input
-                            id="assignee"
-                            value={editingTask.assignee}
-                            onChange={(e) => setEditingTask({ ...editingTask, assignee: e.target.value })}
-                            className="col-span-3"
-                          />
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="dueDate" className="text-right">
-                            Due Date
-                          </Label>
-                          <Input
-                            id="dueDate"
-                            type="date"
-                            value={editingTask.dueDate}
-                            onChange={(e) => setEditingTask({ ...editingTask, dueDate: e.target.value })}
-                            className="col-span-3"
-                          />
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="timeSpent" className="text-right">
-                            Time Spent
-                          </Label>
-                          <Input
-                            id="timeSpent"
-                            type="number"
-                            value={editingTask.timeSpent}
-                            onChange={(e) => setEditingTask({ ...editingTask, timeSpent: Number(e.target.value) })}
-                            className="col-span-3"
-                          />
-                        </div>
-                      </div>
-                    )}
-                    <DialogFooter>
-                      <Button type="submit" onClick={handleUpdate}>
-                        Save changes
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button variant="outline" size="sm" className="ml-2">
-                      Delete
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete the task.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction onClick={() => handleDelete(task.id)}>
+                <div className="flex space-x-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="w-16"
+                    onClick={() => handleEdit(task)}
+                  >
+                    Edit
+                  </Button>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="w-16"
+                      >
                         Delete
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent className="bg-background">
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently delete the task.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={() => handleDelete(task.id)}>
+                          Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
+      {/* Edit Dialog moved outside the table */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="sm:max-w-[425px] bg-background">
+          <DialogHeader>
+            <DialogTitle>Edit Task</DialogTitle>
+            <DialogDescription>
+              Make changes to the task here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          {editingTask && (
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="title" className="text-right">
+                  Title
+                </Label>
+                <Input
+                  id="title"
+                  value={editingTask.title}
+                  onChange={(e) => setEditingTask({ ...editingTask, title: e.target.value })}
+                  className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="description" className="text-right">
+                  Description
+                </Label>
+                <Input
+                  id="description"
+                  value={editingTask.description}
+                  onChange={(e) => setEditingTask({ ...editingTask, description: e.target.value })}
+                  className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="priority" className="text-right">
+                  Priority
+                </Label>
+                <Select
+                  value={editingTask.priority}
+                  onValueChange={(value) => setEditingTask({ ...editingTask, priority: value as Task['priority'] })}
+                >
+                  <SelectTrigger className="col-span-3">
+                    <SelectValue placeholder="Select priority" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="low">Low</SelectItem>
+                    <SelectItem value="medium">Medium</SelectItem>
+                    <SelectItem value="high">High</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="status" className="text-right">
+                  Status
+                </Label>
+                <Select
+                  value={editingTask.status}
+                  onValueChange={(value) => setEditingTask({ ...editingTask, status: value as Task['status'] })}
+                >
+                  <SelectTrigger className="col-span-3">
+                    <SelectValue placeholder="Select status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="todo">To Do</SelectItem>
+                    <SelectItem value="in-progress">In Progress</SelectItem>
+                    <SelectItem value="done">Done</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="assignee" className="text-right">
+                  Assignee
+                </Label>
+                <Input
+                  id="assignee"
+                  value={editingTask.assignee}
+                  onChange={(e) => setEditingTask({ ...editingTask, assignee: e.target.value })}
+                  className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="dueDate" className="text-right">
+                  Due Date
+                </Label>
+                <Input
+                  id="dueDate"
+                  type="date"
+                  value={editingTask.dueDate}
+                  onChange={(e) => setEditingTask({ ...editingTask, dueDate: e.target.value })}
+                  className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="timeSpent" className="text-right">
+                  Time Spent
+                </Label>
+                <Input
+                  id="timeSpent"
+                  type="number"
+                  value={editingTask.timeSpent}
+                  onChange={(e) => setEditingTask({ ...editingTask, timeSpent: Number(e.target.value) })}
+                  className="col-span-3"
+                />
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button type="submit" onClick={handleUpdate}>
+              Save changes
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
