@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { DarkModeToggle } from '@/components/DarkModeToggle'
 
 type DashboardLayoutProps = {
   children: React.ReactNode
@@ -12,6 +13,8 @@ export default function DashboardLayout({ children, username }: DashboardLayoutP
   const router = useRouter()
 
   const handleLogout = () => {
+    // In a real application, you would handle logout logic here
+    // For now, we'll just redirect to the login page
     router.push('/')
   }
 
@@ -24,7 +27,8 @@ export default function DashboardLayout({ children, username }: DashboardLayoutP
             Logout
           </Button>
         </div>
-        <h1 className="text-2xl font-bold">Bug Tracker</h1>
+        <h1 className="text-2xl font-bold hidden sm:block">Task Tracker</h1>
+        <DarkModeToggle />
       </header>
       <main className="flex-grow p-4">
         {children}

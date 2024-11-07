@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import DashboardContent from '@/components/DashboardContent'
 
 export const metadata: Metadata = {
-  title: 'Dashboard | Bug Tracker',
+  title: 'Dashboard | Task Tracker',
   description: 'Manage your tasks and bugs efficiently',
 }
 
