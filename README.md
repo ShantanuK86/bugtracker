@@ -1,6 +1,8 @@
 # Bug Tracker
 
 A modern bug tracking application built with Next.js 14, featuring a clean and intuitive interface for managing tasks and tracking issues.
+**Website:** [https://bugtracker-rouge.vercel.app](https://bugtracker-rouge.vercel.app/)
+
 
 ## Table of Contents
 
@@ -233,24 +235,24 @@ pnpm dev
 
 1. #### Installation Errors:
 
-1. Clear npm cache: `npm cache clean --force`
-2. Delete node_modules and reinstall
+- Clear npm cache: `npm cache clean --force`
+- Delete node_modules and reinstall
 
 
 
 2. ### Build Errors:
 
-1. Check Node.js version
-2. Verify all dependencies are installed
-3. Clear .next directory
+- Check Node.js version
+- Verify all dependencies are installed
+- Clear .next directory
 
 
 
 3. #### Runtime Errors:
 
-1. Check console for error messages
-2. Verify environment variables
-3. Check network connectivity
+- Check console for error messages
+- Verify environment variables
+- Check network connectivity
 
 
 
