@@ -40,13 +40,13 @@ Before starting, make sure you have the following installed:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/bug-tracker.git
+git clone https://github.com/ShantanuK86/bugtracker.git
 ```
 2.2. Navigate to the project directory:
 
 
 ```shellscript
- cd bug-trackercd bug-tracker
+ cd bug-tracker
 
 ```
 
@@ -54,7 +54,7 @@ git clone https://github.com/yourusername/bug-tracker.git
 
 
 ```shellscript
- npm installnpm install
+ npm install
 # or
 yarn install
 # or
@@ -93,7 +93,7 @@ pnpm install
 
 
 ```shellscript
- npx shadcn@latest initnpx shadcn@latest init
+ npx shadcn@latest init
 
 ```
 
@@ -103,7 +103,7 @@ pnpm install
 
 
 ```shellscript
- npm run devnpm run dev
+ npm run dev
 # or
 yarn dev
 # or
@@ -158,25 +158,23 @@ pnpm dev
 
 1. After logging in, you'll see the main dashboard with:
 
-1. Task statistics
-2. Recent activity
-3. Quick actions
+- Task statistics
+- Recent activity
+- Quick actions
 
 
 
 2. Use the top navigation bar to:
 
-1. Access different sections
-2. Toggle dark mode
-3. Log out
-
-
+- Access different sections
+- Toggle dark mode
+- Log out
 
 
 
 ### Managing Tasks
 
-1. Creating a Task:
+- ### Creating a Task:
 
 1. Click "New Task" button
 2. Fill in required fields
@@ -185,7 +183,7 @@ pnpm dev
 
 
 
-2. Editing Tasks:
+- ### Editing Tasks:
 
 1. Click "Edit" on any task
 2. Modify fields
@@ -193,33 +191,11 @@ pnpm dev
 
 
 
-3. Filtering and Sorting:
+- ### Filtering and Sorting:
 
 1. Use filter dropdown for status
 2. Click column headers to sort
 3. Use search bar for specific tasks
-
-
-
-
-
-### Time Tracking
-
-1. Start tracking:
-
-1. Open task details
-2. Click "Start Timer"
-3. Timer will track automatically
-
-
-
-2. Stop tracking:
-
-1. Click "Stop Timer"
-2. Time will be logged to task
-
-
-
 
 
 ## Contributing
@@ -229,7 +205,7 @@ pnpm dev
 
 
 ```shellscript
- git checkout -b feature/AmazingFeaturegit checkout -b feature/AmazingFeature
+ git checkout -b feature/AmazingFeature
 
 ```
 
@@ -237,7 +213,7 @@ pnpm dev
 
 
 ```shellscript
- git commit -m 'Add some AmazingFeature'git commit -m 'Add some AmazingFeature'
+ git commit -m 'Add some AmazingFeature'
 
 ```
 
@@ -245,8 +221,7 @@ pnpm dev
 
 
 ```shellscript
- git push origin feature/AmazingFeaturegit push origin feature/AmazingFeature
-
+ git push origin feature/AmazingFeature
 ```
 
 5. Open a Pull Request
@@ -256,14 +231,14 @@ pnpm dev
 
 ### Common Issues
 
-1. Installation Errors:
+1. #### Installation Errors:
 
 1. Clear npm cache: `npm cache clean --force`
 2. Delete node_modules and reinstall
 
 
 
-2. Build Errors:
+2. ### Build Errors:
 
 1. Check Node.js version
 2. Verify all dependencies are installed
@@ -271,7 +246,7 @@ pnpm dev
 
 
 
-3. Runtime Errors:
+3. #### Runtime Errors:
 
 1. Check console for error messages
 2. Verify environment variables
